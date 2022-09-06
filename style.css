@@ -30,7 +30,6 @@ body {
 }
 
 .user-info {
-    /* color: #ecf0f1; */
     display: block;
 }
 
@@ -40,7 +39,7 @@ body {
     height: 100px;
     border-radius: 50%;
     background-size: 100%;
-    margin-left: 28%;
+    margin-left: 35%;
 }
 
 .quote-container {
