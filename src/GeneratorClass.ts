@@ -61,7 +61,7 @@ class GeneratorDetails {
     }
     static async generateAboutMe(): Promise<string[]> {
         const userAboutMe = await $.get(
-            `https://baconipsum.com/api/?type=meat-and-filler`
+            `https://baconipsum.com/api/?type=all-meat&paras=2&start-with-lorem=1`
         );
         return userAboutMe;
     }

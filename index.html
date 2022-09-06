@@ -26,19 +26,52 @@
     </head>
     <body>
         <div class="container">
+            <script id="user-template" type="text/x-handlebars-template">
+                <img id="profile-pic" src={{photo}} alt="user-photo" />
+                <h3 class="user-info">{{name}}</h3>
+                <div class="user-info">{{address.city}},{{address.state}}</div>
+            </script>
             <div class="user-container"></div>
+
+            <script id="quote-template" type="text/x-handlebars-template">
+                <p>{{quote}}</p>
+            </script>
             <div class="quote-container"></div>
+
             <div class="content-container">
+                <script id="pokemon-template" type="text/x-handlebars-template">
+                    <img id="pokemon-image" src={{photo}} alt="pokemon-photo" />
+                    <h3 class="pokemon-text">{{name}}</h3>
+                </script>
                 <div class="pokemon-container"></div>
+
+                <script id="meat-template" type="text/x-handlebars-template">
+                    {{#each aboutMeArr}}
+                        <p class="meat-text">{{this}}</p>
+                    {{/each}}
+                </script>
                 <div class="meat-container"></div>
             </div>
+
             <div class="friends">
                 <h4>Friends</h4>
+                <script id="friends-template" type="text/x-handlebars-template">
+                    <ul>
+                        {{#each friends}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </script>
                 <div class="friends-container"></div>
+            </div>
+            <div id="genertor-btn" class="buttons">
+                <button>Generate User</button>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
         <script src="./dest/GeneratorClass.js"></script>
         <script src="./dest/DataModule.js"></script>
+        <script src="./dest/RenderModule.js"></script>
+        <script src="./dest/ControllerModule.js"></script>
     </body>
 </html>

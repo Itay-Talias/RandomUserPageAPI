@@ -21,7 +21,3 @@ class DataModule {
         return this.loggedUser;
     }
 }
-const data = new DataModule();
-data.RandomUser().then(() => {
-    console.log(data.getRandomUser());
-});

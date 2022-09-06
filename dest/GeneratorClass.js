@@ -45,7 +45,7 @@ class GeneratorDetails {
     }
     static generateAboutMe() {
         return __awaiter(this, void 0, void 0, function* () {
-            const userAboutMe = yield $.get(`https://baconipsum.com/api/?type=meat-and-filler`);
+            const userAboutMe = yield $.get(`https://baconipsum.com/api/?type=all-meat&paras=2&start-with-lorem=1`);
             return userAboutMe;
         });
     }
