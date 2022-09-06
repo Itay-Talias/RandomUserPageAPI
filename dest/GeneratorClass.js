@@ -27,6 +27,11 @@ class GeneratorDetails {
     static generateState(userDetais, indexOfUser) {
         return `${userDetais[indexOfUser].location.state}`;
     }
+    static generateAddres(userDetais, indexOfUser) {
+        const state = this.generateState(userDetais, indexOfUser);
+        const city = this.generateCity(userDetais, indexOfUser);
+        return { state, city };
+    }
     static generateFriends(usersDetails) {
         const friendsArr = [];
         usersDetails.forEach((user, index) => friendsArr.push(GeneratorDetails.generateUserName(usersDetails, index)));
@@ -35,7 +40,7 @@ class GeneratorDetails {
     static generateQuote() {
         return __awaiter(this, void 0, void 0, function* () {
             const userQuote = yield $.get(`https://api.kanye.rest/`);
-            return userQuote.quote;
+            return { quote: userQuote.quote };
         });
     }
     static generateAboutMe() {
@@ -46,21 +51,28 @@ class GeneratorDetails {
     }
     static generatePokemon() {
         return __awaiter(this, void 0, void 0, function* () {
-            const usersQuote = yield $.get(`https://api.kanye.rest/`);
-            return usersQuote.quote;
+            const randomId = Math.floor(Math.random() * 948) + 1;
+            const randomPokemon = yield $.get(`https://pokeapi.co/api/v2/pokemon/${randomId}/`);
+            return {
+                name: randomPokemon.name,
+                photo: randomPokemon.sprites.front_shiny,
+            };
         });
     }
     static generateUser() {
         return __awaiter(this, void 0, void 0, function* () {
             const userDetais = yield this.fetchUsersDetails(8);
             const faivQuote = yield this.generateQuote();
+            const aboutMe = yield this.generateAboutMe();
+            const randomPokemon = yield this.generatePokemon();
             return {
                 name: this.generateUserName(userDetais, 0),
-                city: this.generateCity(userDetais, 0),
-                state: this.generateState(userDetais, 0),
+                address: this.generateAddres(userDetais, 0),
                 photo: this.generatePhoto(userDetais, 0),
                 friends: this.generateFriends(userDetais.slice(1)),
+                aboutMe: aboutMe,
                 quote: faivQuote,
+                pokemon: randomPokemon,
             };
         });
     }

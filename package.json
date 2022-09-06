@@ -17,5 +17,7 @@
   },
   "homepage": "https://github.com/Itay-Talias/RandomUserPageAPI#readme",
   "devDependencies": {
+    "@types/handlebars": "^4.1.0",
+    "@types/handlebars-helpers": "^0.5.3"
   }
 }
