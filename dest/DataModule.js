@@ -11,10 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 class DataModule {
     constructor() {
         this.loggedUser = {};
+        this.generator = new GeneratorDetails();
     }
     RandomUser() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.loggedUser = yield GeneratorDetails.generateUser();
+            this.loggedUser = yield this.generator.generateUser();
         });
     }
     getRandomUser() {

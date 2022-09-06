@@ -1,8 +1,27 @@
-const data: DataModule = new DataModule();
-
-$("#genertor-btn").on("click", function () {
-    renderModules.emptyAll();
-    data.RandomUser().then(() => {
-        renderModules.RenderPage(data.getRandomUser());
-    });
-});
+class ControllerModule {
+    data: DataModule;
+    render: RenderModules;
+    wisdom: User;
+    constructor() {
+        this.data = new DataModule();
+        this.render = new RenderModules();
+        this.wisdom = {} as User;
+    }
+    addOnClicksToButtons() {
+        $("#genertor-btn").on("click", () => {
+            this.render.emptyAll();
+            this.data.RandomUser().then(() => {
+                this.render.RenderPage(this.data.getRandomUser());
+            });
+        });
+        $("#save-btn").on("click", () => {
+            this.wisdom = this.data.getRandomUser();
+            localStorage.wisdom = JSON.stringify(this.wisdom);
+        });
+        $("#load-btn").on("click", () => {
+            const user: User = JSON.parse(localStorage.wisdom);
+            this.render.emptyAll();
+            this.render.RenderPage(user);
+        });
+    }
+}
