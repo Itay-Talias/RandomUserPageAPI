@@ -69,14 +69,23 @@
                 <button id="save-btn">Save User Page</button>
 
                 <div class="popup">
-                    <button class="popup" id="load-btn" onclick="myFunction()">
-                        Load User Page
-                    </button>
+                    <button id="load-btn">Load User Page</button>
+                    <script
+                        id="popup-template"
+                        type="text/x-handlebars-template"
+                    >
+                        <ul>
+                            {{#each userArr}}
+                                <li class="user-in-loaclStorage">{{name}}</li>
+                            {{/each}}
+                        </ul>
+                    </script>
                     <div class="popuptext" id="myPopup">Pleas choose user:</div>
                 </div>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+        <script src="./dest/LocalStorageManager.js"></script>
         <script src="./dest/Interfaces.js"></script>
         <script src="./dest/GeneratorClass.js"></script>
         <script src="./dest/DataModule.js"></script>

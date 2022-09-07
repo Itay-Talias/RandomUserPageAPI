@@ -44,4 +44,13 @@ class RenderModules {
         const newHTML = template({ friends: user.friends });
         $(".friends-container").append(newHTML);
     }
+    RenderLoadUsers(users) {
+        const popuphtml = $("#popup-template").html();
+        var template = Handlebars.compile(popuphtml);
+        const newHTML = template({ userArr: users });
+        $(".popuptext").append(newHTML);
+    }
+    EmptyLoadUsers() {
+        $(".popuptext").empty();
+    }
 }

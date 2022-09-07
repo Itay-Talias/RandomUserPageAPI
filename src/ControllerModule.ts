@@ -1,13 +1,14 @@
 class ControllerModule {
     data: DataModule;
     render: RenderModules;
-    wisdom: User;
+    localStorageManager: LocalStorageManager;
     constructor() {
         this.data = new DataModule();
         this.render = new RenderModules();
-        this.wisdom = {} as User;
+        this.localStorageManager = new LocalStorageManager();
     }
     addOnClicksToButtons() {
+        const self = this;
         $("#genertor-btn").on("click", () => {
             this.render.emptyAll();
             this.data.RandomUser().then(() => {
@@ -15,13 +16,26 @@ class ControllerModule {
             });
         });
         $("#save-btn").on("click", () => {
-            this.wisdom = this.data.getRandomUser();
-            localStorage.wisdom = JSON.stringify(this.wisdom);
+            this.localStorageManager.saveInLocalStorage(
+                this.data.getRandomUser()
+            );
         });
         $("#load-btn").on("click", () => {
-            const user: User = JSON.parse(localStorage.wisdom);
-            this.render.emptyAll();
-            this.render.RenderPage(user);
+            const users = this.localStorageManager.getAllUserFromLocalStorage();
+            console.log(users);
+            this.render.EmptyLoadUsers();
+            $("#myPopup").addClass("show");
+            this.render.RenderLoadUsers(users);
+        });
+
+        $(".popup").on("click", ".user-in-loaclStorage", function () {
+            console.log($(this).text());
+            const user = self.localStorageManager.getUserByNameFromLocaStorage(
+                $(this).text()
+            );
+            self.render.emptyAll();
+            self.render.RenderPage(user);
+            $("#myPopup").removeClass("show");
         });
     }
 }
